@@ -2,5 +2,6 @@
 
 from django.views.generic import TemplateView
 
-class AboutView(TemplateView):
+class IndexView(TemplateView):
     template_name = "placeholder/index.html"
+index = IndexView.as_view()
