@@ -1,8 +1,10 @@
 GUNICORN=$(VIRTUAL_ENV)/bin/gunicorn
 MANAGE_PY=$(VIRTUAL_ENV)/bin/python manage.py
+COVERAGE=$(VIRTUAL_ENV)/bin/coverage run
 PIP=$(VIRTUAL_ENV)/bin/pip
 
 SETTINGS_DEV=comfortbus.settings.dev
+SETTINGS_TEST=comfortbus.settings.test
 SETTINGS_PROD=comfortbus.settings.prod
 
 .PHONY: all check.venv check.settings dev prod requirements super shell clean runserver gunicorn db migrate makemig static test
@@ -55,8 +57,11 @@ makemig: check.settings
 static: check.settings
 	@$(MANAGE_PY) collectstatic --clear --noinput --settings=$(SETTINGS)
 
-tests: check.settings
-	@$(MANAGE_PY) test --settings=$(SETTINGS)
+tests:
+	@$(MANAGE_PY) test --settings=$(SETTINGS_TEST)
 
 test:
-	@DJANGO_SETTINGS_MODULE=comfortbus.settings.test python manage.py test $(INPUT) --cover-package=$(INPUT)
+	@$(MANAGE_PY) test $(INPUT) --settings=$(SETTINGS_TEST)
+
+coverage:
+	@$(COVERAGE) --source=$(INPUT) manage.py test --settings=$(SETTINGS_TEST)

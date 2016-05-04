@@ -1,1 +1,18 @@
+# Python core and bins
+__pycache__/
+*py[cod]
+*.so
+*.log
+
+# Appwise
+**/migrations/**
+!**/migrations/__init__.py
 .env
+staticfiles/
+
+# Test Coverage
+.coverage
+cover/
+
+# General
+.DS_Store
