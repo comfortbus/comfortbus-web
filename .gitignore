@@ -5,8 +5,6 @@ __pycache__/
 *.log
 
 # Appwise
-**/migrations/**
-!**/migrations/__init__.py
 .env
 staticfiles/
 
