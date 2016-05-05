@@ -2,17 +2,25 @@ Comfort Bus
 ===========
 Backend do Projeto de ESS.
 Alunos:
--    Douglas Vasconcelos
--    Gabriel Vasconcelos
--    Gilberto Sousa
--    Marcus Vinicius Silva
+
+* Douglas Vasconcelos
+
+* Gabriel Vasconcelos
+
+* Gilberto Sousa
+
+* Marcus Vinicius Silva
 
 Dependências
 ------------
 Para o correto funcionamento, são necessários
--    Banco de dados PostgreSQL configurado
--    Python 2.7
--    [PIP](https://pip.pypa.io/en/stable/)
+
+* Banco de dados PostgreSQL configurado
+
+* Python 2.7
+
+* [PIP](https://pip.pypa.io/en/stable/)
+
 É aconselhado que esse código seja rodado em ambiente UNIX, e que tenha uma [virtualenv](https://virtualenv.pypa.io/en/latest/) associada. Na Wiki do projeto o processo de montagem das dependências é explicado mais detalhadamente.
 
 Configurando o ambiente (_.env_)
