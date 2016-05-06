@@ -61,6 +61,10 @@ Ou ainda
     make prod gunicorn
 Que faria sua máquina rodar como o servidor de produção na heroku.
 
+Uma vez que o servidor esteja rodando, basta acessar [este link](http://localhost:8000/):
+
+`http://localhost:8000/`
+
 Versão em Produção
 ------------------
 O código contido na master desse repositório é o mesmo que está rodando na heroku.
