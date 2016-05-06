@@ -2,18 +2,28 @@ Comfort Bus
 ===========
 Backend do Projeto de ESS.
 Alunos:
--    Douglas Vasconcelos
--    Gabriel Vasconcelos
--    Gilberto Sousa
--    Marcus Vinicius Silva
+
+* Douglas Vasconcelos
+
+* Gabriel Vasconcelos
+
+* Gilberto Sousa
+
+* Marcus Vinicius Silva
 
 Dependências
 ------------
 Para o correto funcionamento, são necessários
--    Banco de dados PostgreSQL configurado
--    Python 2.7
--    [PIP](https://pip.pypa.io/en/stable/)
-É aconselhado que esse código seja rodado em ambiente UNIX, e que tenha uma [virtualenv](https://virtualenv.pypa.io/en/latest/) associada. Na Wiki do projeto o processo de montagem das dependências é explicado mais detalhadamente.
+
+* Banco de dados PostgreSQL configurado
+
+* Python 2.7
+
+* [PIP](https://pip.pypa.io/en/stable/)
+
+* [virtualenv](https://virtualenv.pypa.io/en/latest/)
+
+É aconselhado que esse código seja rodado em ambiente UNIX. Na Wiki do projeto o processo de montagem das dependências é explicado mais detalhadamente a questão do banco de dados e do virtualenv.
 
 Configurando o ambiente (_.env_)
 --------------------------------
@@ -35,7 +45,7 @@ E através do PIP, todas as dependências serão instaladas.
 
 Rodando o servidor
 ------------------
-Antes de rodar o servidor, você precisa sincronizar o banco de dados com as tabelas do projeto. Para isso, basta rodar o comando
+Antes de rodar o servidor, você precisa ativar um ambiente virtual (_virtualenv_) que estará associado ao projeto. Depois, você precisa sincronizar o banco de dados com as tabelas do projeto. Para isso, basta rodar o comando
 
     make dev db
 Para rodar o servidor em seu ambiente, você pode utilizar o comando
@@ -50,6 +60,10 @@ Ou ainda
 
     make prod gunicorn
 Que faria sua máquina rodar como o servidor de produção na heroku.
+
+Uma vez que o servidor esteja rodando, basta acessar [este link](http://localhost:8000/):
+
+`http://localhost:8000/`
 
 Versão em Produção
 ------------------
