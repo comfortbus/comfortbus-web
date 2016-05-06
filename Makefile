@@ -26,7 +26,7 @@ dev: check.venv
 prod: check.venv
 	$(eval SETTINGS:=$(SETTINGS_PROD))
 
-requirements:
+requirements: check.venv
 	@$(PIP) install -r requirements.txt
 
 super: check.settings
