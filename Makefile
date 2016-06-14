@@ -7,7 +7,7 @@ SETTINGS_DEV=comfortbus.settings.dev
 SETTINGS_TEST=comfortbus.settings.test
 SETTINGS_PROD=comfortbus.settings.prod
 
-.PHONY: all check.venv check.settings dev prod requirements super shell clean runserver gunicorn db migrate makemig static test
+.PHONY: all check.venv check.settings dev prod requirements super shell clean celery runserver gunicorn db migrate makemig static test
 
 all: help
 
@@ -45,6 +45,9 @@ runserver: check.settings
 
 gunicorn: check.settings
 	@$(GUNICORN) comfortbus.wsgi -w 4 -b 127.0.0.1:8000 --settings=$(SETTINGS)
+
+celery: check.settings
+	@$(MANAGE_PY) celery worker --loglevel=INFO --settings=$(SETTINGS)
 
 db: check.settings makemig migrate
 
