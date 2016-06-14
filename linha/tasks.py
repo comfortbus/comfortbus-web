@@ -13,9 +13,13 @@ def populate():
     response = urllib.urlopen(url)
     data = json.loads(response.read())
     for datum in data:
-        linha = Linha()
-        linha.id = datum['id']
-        linha.label = datum['label'].strip()
-        linha.color = datum['color']
-        linha.nome = datum['nombre'].strip()
+        try:
+            linha = Linha.objects.get(id=datum['id'])
+        except Linha.DoesNotExist:
+            linha = Linha(id=datum['id'])
+
+        if (linha.has_changes(datum)):
+            linha.label = datum['label'].strip()
+            linha.color = datum['color']
+            linha.nome = datum['nombre'].strip()
         linha.save()

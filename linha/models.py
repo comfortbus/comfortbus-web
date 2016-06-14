@@ -19,4 +19,9 @@ class Linha(models.Model):
     def __unicode__(self):
         return u'{} - {}'.format(self.label, self.nome)
 
-    
+    def has_changes(self, datum):
+        return any([
+            self.color != datum['color'],
+            self.label != datum['label'],
+            self.nome != datum['nombre']
+        ])
