@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).absolute().ancestor(2)
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY', default="NOT_MY_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -43,10 +43,12 @@ DJANGO_APPS = [
 ]
 
 LOCAL_APPS = [
-    'placeholder'
+    'placeholder',
 ]
 
-THIRDPARTY_APPS = []
+THIRDPARTY_APPS = [
+    'djcelery',
+]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRDPARTY_APPS
 
@@ -136,3 +138,9 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR.child('staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+# Celery and RabbitMQ
+BROKER_URL = os.getenv(
+    'RABBITMQ_BIGWIG_RX_URL',
+    config('BROKER_URL', None)
+)
