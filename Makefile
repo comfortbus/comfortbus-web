@@ -47,7 +47,7 @@ gunicorn: check.settings
 	@$(GUNICORN) comfortbus.wsgi -w 4 -b 127.0.0.1:8000 --settings=$(SETTINGS)
 
 celery: check.settings
-	@$(MANAGE_PY) celery worker --loglevel=INFO --settings=$(SETTINGS)
+	@$(MANAGE_PY) celery worker -B --loglevel=INFO --settings=$(SETTINGS)
 
 db: check.settings makemig migrate
 

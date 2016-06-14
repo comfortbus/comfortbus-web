@@ -44,6 +44,7 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     'placeholder',
+    'linha',
 ]
 
 THIRDPARTY_APPS = [
@@ -144,3 +145,6 @@ BROKER_URL = os.getenv(
     'RABBITMQ_BIGWIG_RX_URL',
     config('BROKER_URL', None)
 )
+
+# External API
+API_BASE_URL = 'http://200.238.105.143:85/public/recife/'
