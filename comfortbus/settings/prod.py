@@ -44,7 +44,7 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     'placeholder',
-    'linha',
+    'malha',
 ]
 
 THIRDPARTY_APPS = [
