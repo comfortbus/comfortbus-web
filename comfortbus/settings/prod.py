@@ -49,6 +49,7 @@ LOCAL_APPS = [
 
 THIRDPARTY_APPS = [
     'djcelery',
+    'rest_framework',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRDPARTY_APPS
