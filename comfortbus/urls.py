@@ -18,8 +18,8 @@ from django.conf.urls import patterns
 from django.conf.urls import include
 from django.contrib import admin
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('placeholder.urls')),
-)
+    url(r'^api/', include('malha.routers', namespace='malha_api')),
+]
