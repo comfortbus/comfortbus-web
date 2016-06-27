@@ -3,7 +3,7 @@
 from rest_framework import serializers
 from malha.models import *
 
-__all__ = ['LinhaSerializer', 'ParadaSerializer']
+__all__ = ['LinhaSerializer', 'ParadaSerializer', 'ParadaListSerializer']
 
 class LinhaSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,3 +14,8 @@ class ParadaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Parada
+
+class ParadaListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Parada
+        exclude = ('linhas', )

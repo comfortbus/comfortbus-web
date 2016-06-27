@@ -26,7 +26,7 @@ class ParadaAPIView(RetrieveAPIView):
 
 class ParadaListAPIView(ListAPIView):
     queryset = Parada.objects.all()
-    serializer_class = ParadaSerializer
+    serializer_class = ParadaListSerializer
 
 
 linha_view = LinhaAPIView.as_view()
