@@ -25,16 +25,23 @@ def populate_linha():
             linha.nome = datum['nombre'].strip()
         linha.save()
 
-@periodic_task(run_every=crontab(hour="2, 14", minute="5", day_of_week="1-5"))
+@periodic_task(run_every=crontab(hour="2, 14", minute="10", day_of_week="1-5"))
 def populate_parada():
-    url = settings.API_BASE_URL + 'line/'
-
     for linha in Linha.objects.all():
-        url += linha.label
+        url = settings.API_BASE_URL + 'line/' + linha.label
         response = urllib.urlopen(url)
-        data = json.loads(response.read())
+        try:
+            data = json.loads(response.read())
+        except ValueError:
+            logger = populate_parada.get_logger()
+            if response.read() != '':
+                logger.error("URL '{}' return is incomprehensible".format(url))
+                continue
+            else:
+                logger.warning("No data returned for URL '{}'".format(url))
+
         paradas = []
-        for datum in data:
+        for datum in data['stops']:
             try:
                 parada = Parada.objects.get(id=datum['id'])
             except Parada.DoesNotExist:
@@ -47,11 +54,11 @@ def populate_parada():
                 parada.lon = datum['location']['lon']
                 parada.save()
 
-            if linha not in parada.linhas:
+            if linha not in parada.linhas.all():
                 parada.linhas.add(linha)
 
             paradas.append(parada)
 
-        for parada in linha.paradas:
+        for parada in linha.paradas.all():
             if parada not in paradas:
                 parada.linhas.remove(linha)
