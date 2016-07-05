@@ -57,7 +57,7 @@ class Parada(models.Model):
 class Veiculo(models.Model):
 
     linha = models.ForeignKey(Linha, related_name='veiculos')
-    lotacao = models.PositiveIntegerField(u'Lotação', default=0)
+    lotacao = models.IntegerField(u'Lotação', default=0)
     secret_key = models.CharField('Secret Key', max_length=32, null=True,
                                   blank=True)
     lat = models.FloatField('Latitude', null=True, blank=True)
@@ -73,7 +73,8 @@ class Veiculo(models.Model):
         return u'({}) {}'.format(self.pk, self.linha)
 
     def save(self):
-        self.secret_key = get_random_string(length=32)
+        if self.secret_key is None:
+            self.secret_key = get_random_string(length=32)
         super(Veiculo, self).save()
 
     def update_location(self, location):
