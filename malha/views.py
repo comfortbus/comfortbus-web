@@ -60,7 +60,6 @@ class UpdateLotacaoView(CSRFExemptMixin, View):
     def post(self, request, **kwargs):
         veiculo = Veiculo.objects.get(pk=kwargs['pk'])
         data = json.loads(request.body.decode("utf-8"))
-        import ipdb; ipdb.set_trace()
         if veiculo.secret_key == data.get('secret_key', None):
             try:
                 veiculo.lotacao = int(data['lotacao'])
