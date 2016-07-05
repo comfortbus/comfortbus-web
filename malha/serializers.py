@@ -32,8 +32,11 @@ class LinhaVeiculosSerializer(serializers.ModelSerializer):
 
 
 class ParadaEstimativasSerializer(serializers.ModelSerializer):
+    lotacao = serializers.IntegerField(
+        source='veiculo.lotacao', read_only=True)
+
     class Meta:
         model = ParadaVeiculo
         fields = (
-            'veiculo', 'tempo_chegada', 'tempo_saida',
+            'veiculo', 'lotacao', 'tempo_chegada', 'tempo_saida',
             'instante', 'distancia', 'nome_destino')
